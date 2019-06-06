@@ -31,8 +31,12 @@
           <td><%= item.qty %></td>
           <td><%= item.amount %></td>
           <td>
+            <form action="/delete/<%= item.id %>?_method=DELETE" method="POST">
               <a href="/Edit/<%= item.id %>" class="btn btn-sm btn-success">Edit</a>
-              <a href="/delete/<%= item.id %>" class="btn btn-sm btn-danger">Delete</a>
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" class="btn btn-sm btn-danger" value="Delete"></a>
+            </form>
+              
           </td>
         </tr>
         <% }) %>

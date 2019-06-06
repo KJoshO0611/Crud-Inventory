@@ -62,3 +62,13 @@ const db = mysql.createConnection({
         })
     }
 
+    exports.deleteItem = function(id, callback){
+    let sql = "DELETE from items where id = ?";
+    db.query(sql, [id],function(err, data){
+        if(err){
+            callback(err);
+        }else{
+            callback(null, data);
+        }
+    })
+}

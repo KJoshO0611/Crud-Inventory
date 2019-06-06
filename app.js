@@ -63,6 +63,7 @@ app.get("/Edit/:id", function(req, res){
   }
 });
 
+
 app.post("/Add", function(req, res){
   try {
     itemRouter.insertItem(req.body, function(err, data){
@@ -105,6 +106,19 @@ app.put("/Edit/:id", function(req, res){
   }
 })
 
+app.delete("/delete/:id", function(req, res){
+  try {
+    itemRouter.deleteItem(req.params.id, function(err, data){
+          if(err){
+              throw err;
+          }else{
+            res.redirect('/');
+          }
+      })
+  } catch (error) {
+      res.status(500).send(error);
+  }
+})
 
 
 // catch 404 and forward to error handler
