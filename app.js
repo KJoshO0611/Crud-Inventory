@@ -26,6 +26,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.get("/api/inventory", function(req, res){
+  try {
+    itemRouter.getItem(req,function(err, item){
+          if(err){
+              throw err
+          }else{
+            res.render('index.ejs',{
+              title : 'Inventory',
+              item : item
+            });
+          }
+      })
+  } catch (error) {
+      res.status(500).send(error);
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
