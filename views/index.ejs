@@ -1,6 +1,7 @@
 <% include includes/header.ejs %>
     <br>
     <div class="container">
+    <% if (item.length > 0) {%>
     <table class="table table-striped">
       <thead class="bg-dark text-light">
         <tr>
@@ -30,6 +31,9 @@
         <% }) %>
       </tbody>
     </table>
+    <% } else { %>
+      <p class="text-center">Oops! nothing to see here. Go <a href="/add" >add</a> something.</p>
+  <% } %>
   </div>  
   </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
