@@ -20,6 +20,7 @@
           <td scope="col">Item Name</td>
           <td scope="col">Quantity</td>
           <td scope="col">Amount</td>
+          <td scope="col">Tools</td>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +30,10 @@
           <td><%= item.name %></td>
           <td><%= item.qty %></td>
           <td><%= item.amount %></td>
+          <td>
+              <a href="/Edit/<%= item.id %>" class="btn btn-sm btn-success">Edit</a>
+              <a href="/delete/<%= item.id %>" class="btn btn-sm btn-danger">Delete</a>
+          </td>
         </tr>
         <% }) %>
       </tbody>

@@ -28,6 +28,17 @@ const db = mysql.createConnection({
         })
     }
 
+    exports.getoneItem = function(id, callback){
+        let sql = `SELECT * From items WHERE id = ?`;
+        db.query(sql,[id] ,function(err, data){
+            if(err){
+                callback(err);
+            }else{
+                callback(null,data);
+            }
+        })
+    }
+
     exports.insertItem = function(data, callback){
         let sql = "INSERT into items set ?";
     
@@ -36,6 +47,17 @@ const db = mysql.createConnection({
                 callback(err);
             }else{
                 callback(null, result);
+            }
+        })
+    }
+
+    exports.updateItem = function(id, data, callback){
+        let sql = "update items set ? where id = ?";
+        db.query(sql, [data, id], function(err, data){
+            if(err){
+                callback(err);
+            }else{
+                callback(null, data);
             }
         })
     }

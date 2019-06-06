@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var methodOverride = require('method-override');
 
 
 
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use('/users', usersRouter);
 app.use('/Add', addRouter);
@@ -36,6 +38,24 @@ app.get("/", function(req, res){
               title : 'Inventory',
               item : item
             });
+          }
+      })
+  } catch (error) {
+      res.status(500).send(error);
+  }
+});
+
+app.get("/Edit/:id", function(req, res){
+  try {
+    itemRouter.getoneItem(req.params.id,function(err, data){
+          if(err){
+              throw err
+          }else{
+              res.render('edit-item',{
+                title : 'Edit',
+                item : data[0],
+                put: true
+              });
           }
       })
   } catch (error) {
@@ -63,6 +83,29 @@ app.post("/Add", function(req, res){
       
   }
 });
+
+app.put("/Edit/:id", function(req, res){
+  try {
+    itemRouter.updateItem(req.params.id, req.body, function(err, item){
+          if(err){
+              throw err;
+          }else{
+            itemRouter.getItem(req.params.id, function(err, item){
+                  if(err){
+                      throw err;
+                  }else{
+                    res.redirect('/');
+                  }
+              })
+          }
+      })
+  } catch (error) {
+      res.status(500).send(error);
+      
+  }
+})
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

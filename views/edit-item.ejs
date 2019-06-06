@@ -1,0 +1,27 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+    
+        <form method="POST" action="/Edit/<%= item.id %>?_method=PUT" >
+            <table>
+                <tr>
+                    <td>name: </td>
+                    <td><input type="text" name = "name" value="<%= item.name %>"> </td>
+                </tr>
+                <tr>
+                <td>qty: </td>
+                        <td><input type="text" name = "qty" value = "<%= item.qty %>"></td>
+                </tr>
+                <tr>
+                <td>amount: </td>
+                            <td><input type="text" name = "amount" value = "<%= item.amount %>"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Submit"></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
