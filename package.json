@@ -1,6 +1,6 @@
 {
   "name": "crud-inventory",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -14,5 +14,18 @@
     "method-override": "^3.0.0",
     "morgan": "~1.9.1",
     "mysql": "^2.17.1"
-  }
+  },
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KJoshO0611/Crud-Inventory.git"
+  },
+  "author": "Kurt Ortua",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/KJoshO0611/Crud-Inventory/issues"
+  },
+  "homepage": "https://github.com/KJoshO0611/Crud-Inventory#readme"
 }
