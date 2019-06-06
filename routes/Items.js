@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 
+
 const db = mysql.createConnection({
     host : "localhost",
     user : "root",
@@ -26,3 +27,16 @@ const db = mysql.createConnection({
             }
         })
     }
+
+    exports.insertItem = function(data, callback){
+        let sql = "INSERT into items set ?";
+    
+        db.query(sql, [data], function(err, result){
+            if(err){
+                callback(err);
+            }else{
+                callback(null, result);
+            }
+        })
+    }
+

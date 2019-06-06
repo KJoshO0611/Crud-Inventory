@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 
 
-var indexRouter = require('./routes/index');
+var addRouter = require('./routes/add');
 var usersRouter = require('./routes/users');
 var itemRouter = require('./routes/Items');
 
@@ -24,9 +24,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.get("/api/inventory", function(req, res){
+app.use('/Add', addRouter);
+app.get("/", function(req, res){
   try {
     itemRouter.getItem(req,function(err, item){
           if(err){
@@ -40,6 +40,27 @@ app.get("/api/inventory", function(req, res){
       })
   } catch (error) {
       res.status(500).send(error);
+  }
+});
+
+app.post("/Add", function(req, res){
+  try {
+    itemRouter.insertItem(req.body, function(err, data){
+          if(err){
+              throw err;
+          }else{
+            itemRouter.getItem(data.insertId, function(err, data){
+                  if(err){
+                      throw err;
+                  }else{
+                    res.redirect('/');
+                  }
+              })
+          }
+      })
+  } catch (error) {
+      res.status(500).send(error);
+      
   }
 });
 
